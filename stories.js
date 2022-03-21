@@ -45,9 +45,9 @@ const html = `
     property = e.data.property;
 
     // これは実際には不要
-    if (property && property.default) {
-      document.getElementById('story_title').textContent = property.default.title;
-    }
+    // if (property && property.default) {
+    //   document.getElementById('story_title').textContent = property.default.title;
+    // }
 
     // この部分の必要性は今ひとつよく分からない
     if (property && property.extended) {
