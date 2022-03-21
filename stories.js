@@ -63,12 +63,12 @@ const html = `
       }
     }
 
-    document.getElementById('story_title').textContent = e.data.title;
-    markers = e.data.markers;
+    // document.getElementById('story_title').textContent = e.data.title;
+    // markers = e.data.markers;
     // 最初のマーカーを自動的に選択する
     // prev();
     console.log('layers', e.data.layers)
-    console.log('markers', markers)
+    // console.log('markers', markers)
   };
 
   addEventListener('message', (e) => {
@@ -111,31 +111,30 @@ update();
 function update() {
   // tourタグの付いたレイヤーから決め打ちで最初のものだけを取り出す
   let layers = reearth.layers.findByTagLabels('tour');
-  let layer = reearth.layers.findByTagLabels('tour')[0];
-  let markers = [];
-
   console.log(layers)
 
   // このエラーチェックはもっとちゃんとやる必要あり
-  if (typeof layer === undefined) {
+  if (typeof layers === undefined) {
     return;
   }
 
   // GUIでは下から上に連番となるため、ここでは逆順で登録する
-  for (let i = layer.children.length - 1; i >= 0; i--) {
-    lat = layer.children[i].property.default.location.lat;
-    lng = layer.children[i].property.default.location.lng;
-    height = layer.children[i].property.default.height || 10000;
-    id = layer.children[i].id;
-    title = layer.children[i].title;
-
-    markers.push({ lat: lat, lng: lng, height: height, id: id, title: title });
-  }
+  layers.map((layer, index) => {
+    let markers = [];
+    for (let i = layer.children.length - 1; i >= 0; i--) {
+      lat = layer.children[i].property.default.location.lat;
+      lng = layer.children[i].property.default.location.lng;
+      height = layer.children[i].property.default.height || 10000;
+      id = layer.children[i].id;
+      title = layer.children[i].title;
+      markers.push({ lat: lat, lng: lng, height: height, id: id, title: title });
+    }
+    return markers
+  })
 
   reearth.ui.postMessage({
     property: reearth.widget.property,
     title: layer.title,
     layers,
-    markers,
   });
 }
