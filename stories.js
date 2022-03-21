@@ -134,7 +134,6 @@ function update() {
 
   reearth.ui.postMessage({
     property: reearth.widget.property,
-    title: layer.title,
     layers,
   });
 }
