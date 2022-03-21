@@ -120,6 +120,7 @@ function update() {
 
   // GUIでは下から上に連番となるため、ここでは逆順で登録する
   layers.map((layer, index) => {
+    console.log('layer', layer)
     let markers = [];
     for (let i = layer.children.length - 1; i >= 0; i--) {
       lat = layer.children[i].property.default.location.lat;
