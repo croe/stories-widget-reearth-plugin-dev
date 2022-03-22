@@ -130,6 +130,10 @@ const html = `
 
   const next = () => {
     index = Math.min(layers[selectedMenuIndex].markers.length - 1, index + 1);
+    console.log(index, layers[selectedMenuIndex].markers.length)
+    if (index === layers[selectedMenuIndex].markers.length) {
+      
+    }
     select(layers[selectedMenuIndex].markers[index]);
   };
 
