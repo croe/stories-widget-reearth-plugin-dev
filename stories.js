@@ -134,7 +134,10 @@ function update() {
         });
       }
     }
-    layers.push(markers)
+    layers.push({
+      title: layer.title,
+      markers
+    })
   })
   console.log('layers', layers)
 
