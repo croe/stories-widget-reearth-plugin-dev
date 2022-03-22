@@ -111,7 +111,6 @@ update();
 function update() {
   // tourタグの付いたレイヤーから決め打ちで最初のものだけを取り出す
   let layers = reearth.layers.findByTagLabels('tour');
-  console.log(layers)
 
   // このエラーチェックはもっとちゃんとやる必要あり
   if (typeof layers === undefined) {
@@ -132,6 +131,7 @@ function update() {
     }
     return markers
   })
+  console.log(layers)
 
   reearth.ui.postMessage({
     property: reearth.widget.property,
