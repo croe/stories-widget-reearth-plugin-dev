@@ -60,13 +60,13 @@ const html = `
   let index = 0;
   let selectedMenuIndex = -1;
   let layers = [];
+  
+  const $titleList = document.getElementById('title_list')
+  const $storyWrap = document.getElementById('story_wrapper')
 
   const cb = (e) => {
     reearth = e.source.reearth;
     property = e.data.property;
-    
-    const $titleList = document.getElementById('title_list')
-    const $storyWrap = document.getElementById('story_wrapper')
 
     // これは実際には不要
     // if (property && property.default) {
