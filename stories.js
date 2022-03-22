@@ -177,7 +177,7 @@ function update() {
     // 直下のChildrenが1つ、かつ、その下のChildrenが複数ある時（もっといい分類がありそう）
     if (layer.children.length === 1 && layer.children[0].children.length > 0) {
       // データセットから登録したもの
-      for (let i = layer.children[0].children - 1; i >= 0; i--) {
+      for (let i = layer.children[0].children.length - 1; i >= 0; i--) {
         markers.push({
           lat: layer.children[0].children[i].property?.default.location.lat,
           lng: layer.children[0].children[i].property?.default.location.lng,
