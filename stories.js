@@ -28,21 +28,26 @@ const html = `
   }
 </style>
 <div id="wrapper">
-  <h2 id="story_title"></h2>
-  <h3 id="marker_title"></h3>
-  <p>
-    <button id="prev">Prev</button>
-    <button id="next">Next</button>
-  </p>
+  <div id="title_list"></div>
+  <div id="story_wrapper">
+    <h2 id="story_title"></h2>
+    <h3 id="marker_title"></h3>
+    <p>
+      <button id="prev">Prev</button>
+      <button id="next">Next</button>
+    </p>
+  </div>
 </div>
 <script>
   let reearth;
   let index = 0;
-  let markers = [];
+  let layers = [];
 
   const cb = (e) => {
     reearth = e.source.reearth;
     property = e.data.property;
+    
+    const $titleList = document.getElementById('title_list')
 
     // これは実際には不要
     // if (property && property.default) {
@@ -51,22 +56,23 @@ const html = `
 
     // この部分の必要性は今ひとつよく分からない
     if (property && property.extended) {
-      if (property.extended.horizontally) {
-        document.documentElement.classList.add('extendedh');
-      } else {
-        document.documentElement.classList.remove('extendedh');
-      }
-      if (property.extended.vertically) {
-        document.documentElement.classList.add('extendedv');
-      } else {
-        document.documentElement.classList.remove('extendedv');
-      }
+      if (property.extended.horizontally) { document.documentElement.classList.add('extendedh');
+      } else {  document.documentElement.classList.remove('extendedh');
+      } if (property.extended.vertically) { document.documentElement.classList.add('extendedv');
+      } else { document.documentElement.classList.remove('extendedv'); }
     }
 
     // document.getElementById('story_title').textContent = e.data.title;
     // markers = e.data.markers;
     // 最初のマーカーを自動的に選択する
     // prev();
+    layers = e.data.layers;
+    layers.map((layer, index) => {
+      const $layer = document.createElement('div')
+      $layer.classList.add('layer')
+      $layer.innerText = layer.title
+      $titleList.appendChild($layer)
+    })
     console.log('layers', e.data.layers)
     // console.log('markers', markers)
   };
