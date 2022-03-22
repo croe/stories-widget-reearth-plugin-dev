@@ -58,6 +58,7 @@ const html = `
 <script>
   let reearth;
   let index = 0;
+  let selectedMenuIndex = -1;
   let layers = [];
 
   const cb = (e) => {
@@ -65,6 +66,7 @@ const html = `
     property = e.data.property;
     
     const $titleList = document.getElementById('title_list')
+    const $storyWrap = document.getElementById('story_wrapper')
 
     // これは実際には不要
     // if (property && property.default) {
@@ -98,12 +100,25 @@ const html = `
   
   const selectMenu = (e) => {
     console.log(e)
+    selectedMenuIndex = e.target.dataset.id
+    showLayer()
   }
 
   addEventListener('message', (e) => {
     if (e.source !== parent) return;
     cb(e);
   });
+  
+  const showLayer = () => {
+    $titleList.classList.add('is-hidden')
+    $storyWrap.classList.remove('is-hidden')
+    console.log(selectedMenuIndex)
+  }
+  
+  const hideLayer = () => {
+    $titleList.classList.remove('is-hidden')
+    $storyWrap.classList.add('is-hidden')
+  }
 
   const prev = () => {
     index = Math.max(0, index - 1);
