@@ -110,15 +110,16 @@ update();
 
 function update() {
   // tourタグの付いたレイヤーから決め打ちで最初のものだけを取り出す
-  let layers = reearth.layers.findByTagLabels('tour');
+  let _layers = reearth.layers.findByTagLabels('tour');
+  let layers = []
 
   // このエラーチェックはもっとちゃんとやる必要あり
-  if (typeof layers === undefined) {
+  if (typeof _layers === undefined) {
     return;
   }
 
   // GUIでは下から上に連番となるため、ここでは逆順で登録する
-  layers.map((layer, index) => {
+  _layers.map((layer, index) => {
     console.log('layer', layer)
     let markers = [];
     if (layer.children.length > 0) {
@@ -133,7 +134,7 @@ function update() {
         });
       }
     }
-    return markers
+    layers.push(markers)
   })
   console.log('layers', layers)
 
