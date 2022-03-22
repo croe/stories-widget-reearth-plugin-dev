@@ -123,12 +123,13 @@ function update() {
     let markers = [];
     if (layer.children.length > 0) {
       for (let i = layer.children.length - 1; i >= 0; i--) {
-        lat = layer.children[i].property.default.location.lat;
-        lng = layer.children[i].property.default.location.lng;
-        height = layer.children[i].property.default.height || 10000;
-        id = layer.children[i].id;
-        title = layer.children[i].title;
-        markers.push({ lat: lat, lng: lng, height: height, id: id, title: title });
+        markers.push({
+          lat: layer.children[i].property?.default.location.lat,,
+          lng: layer.children[i].property?.default.location.lng,
+          height: layer.children[i].property?.default.height || 10000,
+          id: layer.children[i].id,
+          title: layer.children[i].title
+        });
       }
     }
     return markers
