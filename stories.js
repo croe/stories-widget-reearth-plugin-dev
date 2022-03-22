@@ -63,6 +63,7 @@ const html = `
   
   const $titleList = document.getElementById('title_list')
   const $storyWrap = document.getElementById('story_wrapper')
+  const $storyTitle = document.getElementById('story_title')
 
   const cb = (e) => {
     reearth = e.source.reearth;
@@ -112,22 +113,24 @@ const html = `
   const showLayer = () => {
     $titleList.classList.add('is-hidden')
     $storyWrap.classList.remove('is-hidden')
-    console.log(selectedMenuIndex)
+    $storyTitle.textContent = layers[selectedMenuIndex].title
+    select(layers[selectedMenuIndex].markers[0]);
   }
   
   const hideLayer = () => {
     $titleList.classList.remove('is-hidden')
     $storyWrap.classList.add('is-hidden')
+    selectedMenuIndex = -1
   }
 
   const prev = () => {
     index = Math.max(0, index - 1);
-    select(markers[index]);
+    select(layers[selectedMenuIndex].markers[index]);
   };
 
   const next = () => {
-    index = Math.min(markers.length - 1, index + 1);
-    select(markers[index]);
+    index = Math.min(layers[selectedMenuIndex].markers.length - 1, index + 1);
+    select(layers[selectedMenuIndex].markers[index]);
   };
 
   const select = (targetMarker) => {
