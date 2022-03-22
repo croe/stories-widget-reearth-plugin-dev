@@ -129,12 +129,13 @@ const html = `
   };
 
   const next = () => {
-    index = Math.min(layers[selectedMenuIndex].markers.length - 1, index + 1);
-    console.log(index, layers[selectedMenuIndex].markers.length)
-    if (index === layers[selectedMenuIndex].markers.length) {
-      
+    if (index + 1 === layers[selectedMenuIndex].markers.length) {
+      index = 0
+      hideLayer()
+    } else {
+      index = Math.min(layers[selectedMenuIndex].markers.length - 1, index + 1);
+      select(layers[selectedMenuIndex].markers[index]);
     }
-    select(layers[selectedMenuIndex].markers[index]);
   };
 
   const select = (targetMarker) => {
