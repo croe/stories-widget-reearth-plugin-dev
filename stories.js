@@ -26,6 +26,14 @@ const html = `
   .extendedv #wrapper {
     height: 100%;
   }
+  .layer {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    padding: 6px 0;
+  }
 </style>
 <div id="wrapper">
   <div id="title_list"></div>
@@ -71,11 +79,16 @@ const html = `
       const $layer = document.createElement('div')
       $layer.classList.add('layer')
       $layer.innerText = layer.title
+      $layer.addEventListener('click', selectMenu)
       $titleList.appendChild($layer)
     })
     console.log('layers', e.data.layers)
     // console.log('markers', markers)
   };
+  
+  const selectMenu = (e) => {
+    console.log(e)
+  }
 
   addEventListener('message', (e) => {
     if (e.source !== parent) return;
