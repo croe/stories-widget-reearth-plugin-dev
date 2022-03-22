@@ -34,10 +34,19 @@ const html = `
     color: black;
     padding: 6px 0;
   }
+  #title_list.is-hidden {
+    display: none;
+  }
+  #story_wrapper {
+    
+  }
+  #story_wrapper.is-hidden {
+    display: none;
+  }
 </style>
 <div id="wrapper">
   <div id="title_list"></div>
-  <div id="story_wrapper">
+  <div id="story_wrapper" class="is-hidden">
     <h2 id="story_title"></h2>
     <h3 id="marker_title"></h3>
     <p>
@@ -79,6 +88,7 @@ const html = `
       const $layer = document.createElement('div')
       $layer.classList.add('layer')
       $layer.innerText = layer.title
+      $layer.dataset.id = index
       $layer.addEventListener('click', selectMenu)
       $titleList.appendChild($layer)
     })
