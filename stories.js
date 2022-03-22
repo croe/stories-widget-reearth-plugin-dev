@@ -124,7 +124,7 @@ function update() {
     if (layer.children.length > 0) {
       for (let i = layer.children.length - 1; i >= 0; i--) {
         markers.push({
-          lat: layer.children[i].property?.default.location.lat,,
+          lat: layer.children[i].property?.default.location.lat,
           lng: layer.children[i].property?.default.location.lng,
           height: layer.children[i].property?.default.height || 10000,
           id: layer.children[i].id,
