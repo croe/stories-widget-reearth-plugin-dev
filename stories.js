@@ -174,7 +174,19 @@ function update() {
   // GUIでは下から上に連番となるため、ここでは逆順で登録する
   _layers.reverse().map((layer, index) => {
     let markers = [];
-    if (layer.children.length > 0) {
+    // 直下のChildrenが1つ、かつ、その下のChildrenが複数ある時（もっといい分類がありそう）
+    if (layer.children.length === 1 && layer.children[0].children.length > 0) {
+      // データセットから登録したもの
+      for (let i = layer.children[0].children - 1; i >= 0; i--) {
+        markers.push({
+          lat: layer.children[0].children[i].property?.default.location.lat,
+          lng: layer.children[0].children[i].property?.default.location.lng,
+          height: layer.children[0].children[i].property?.default.height || 10000,
+          id: layer.children[0].children[i].id,
+          title: layer.children[0].children[i].title
+        });
+      }
+    } else if (layer.children.length > 0) {
       for (let i = layer.children.length - 1; i >= 0; i--) {
         markers.push({
           lat: layer.children[i].property?.default.location.lat,
