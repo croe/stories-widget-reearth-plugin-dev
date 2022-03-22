@@ -147,7 +147,7 @@ const html = `
       { duration: 2 }
     );
     reearth.layers.select(targetMarker.id);
-    document.getElementById('marker_title').textContent = targetMarker.title + ' (' + (index + 1) + ' / ' + markers.length + ')';
+    document.getElementById('marker_title').textContent = targetMarker.title + ' (' + (index + 1) + ' / ' + layers[selectedMenuIndex].markers.length + ')';
   };
 
   document.getElementById('prev').addEventListener('click', prev);
