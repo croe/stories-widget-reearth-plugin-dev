@@ -131,7 +131,7 @@ function update() {
     }
     return markers
   })
-  console.log(layers)
+  console.log('layers', layers)
 
   reearth.ui.postMessage({
     property: reearth.widget.property,
