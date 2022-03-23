@@ -116,7 +116,6 @@ const html = `
     $titleList.classList.remove('is-hidden')
     $storyWrap.classList.add('is-hidden')
     selectedMenuIndex = -1
-    reearth.layers.hide(layers[selectedMenuIndex].markers[index])
   }
 
   const prev = () => {
@@ -169,7 +168,7 @@ function update() {
 
   // GUIでは下から上に連番となるため、ここでは逆順で登録する
   _layers.reverse().map((layer, index) => {
-    if (!(layer.children.length > 0)) return null
+    if (!layer.children　|| !(layer.children.length > 0)) return null
     let markers = [];
     // 直下のChildrenが1つ、かつ、その下のChildrenが複数ある時（もっといい分類がありそう）
     if (layer.children.length === 1 && layer.children[0].children.length > 0) {
