@@ -68,7 +68,6 @@ const html = `
   const cb = (e) => {
     reearth = e.source.reearth;
     property = e.data.property;
-    console.log(reearth)
 
     // これは実際には不要
     // if (property && property.default) {
@@ -83,10 +82,6 @@ const html = `
       } else { document.documentElement.classList.remove('extendedv'); }
     }
 
-    // document.getElementById('story_title').textContent = e.data.title;
-    // markers = e.data.markers;
-    // 最初のマーカーを自動的に選択する
-    // prev();
     layers = e.data.layers;
     layers.map((layer, index) => {
       const $layer = document.createElement('div')
@@ -97,7 +92,6 @@ const html = `
       $titleList.appendChild($layer)
     })
     console.log('layers', e.data.layers)
-    // console.log('markers', markers)
   };
   
   const selectMenu = (e) => {
@@ -122,7 +116,7 @@ const html = `
     $titleList.classList.remove('is-hidden')
     $storyWrap.classList.add('is-hidden')
     selectedMenuIndex = -1
-    reearth.layers.hide()
+    reearth.layers.hide(layers[selectedMenuIndex].markers[index])
   }
 
   const prev = () => {
@@ -132,8 +126,8 @@ const html = `
 
   const next = () => {
     if (index + 1 === layers[selectedMenuIndex].markers.length) {
-      index = 0
       hideLayer()
+      index = 0
     } else {
       index = Math.min(layers[selectedMenuIndex].markers.length - 1, index + 1);
       select(layers[selectedMenuIndex].markers[index]);
