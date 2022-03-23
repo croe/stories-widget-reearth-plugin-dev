@@ -121,6 +121,7 @@ const html = `
     $titleList.classList.remove('is-hidden')
     $storyWrap.classList.add('is-hidden')
     selectedMenuIndex = -1
+    reearth.layers.hide()
   }
 
   const prev = () => {
