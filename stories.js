@@ -68,6 +68,7 @@ const html = `
   const cb = (e) => {
     reearth = e.source.reearth;
     property = e.data.property;
+    console.log(reearth)
 
     // これは実際には不要
     // if (property && property.default) {
