@@ -95,6 +95,7 @@ const html = `
     
     origin = e.data.origin
     console.log('layers', e.data.layers)
+    console.log(origin)
   };
   
   const selectMenu = (e) => {
