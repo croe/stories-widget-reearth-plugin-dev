@@ -161,7 +161,7 @@ update();
 
 function update() {
   // tourタグの付いたレイヤーから決め打ちで最初のものだけを取り出す
-  const origin = reearth.layers.findByTagLabels('origin')[0]
+  const _origin = reearth.layers.findByTagLabels('origin')[0]
   let _layers = reearth.layers.findByTagLabels('tour');
   let layers = []
   console.log(_layers)
@@ -204,7 +204,13 @@ function update() {
     })
   })
   console.log('layers', layers)
-
+  console.log('origin', origin)
+  const origin = {
+    lat: _origin.property.default.location.lat,
+    lng: _origin.property.default.location.lng,
+    height: _origin.property.default.height || 10000,
+    id: _origin.id,
+  }
   reearth.ui.postMessage({
     property: reearth.widget.property,
     layers,
