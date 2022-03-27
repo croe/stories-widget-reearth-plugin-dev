@@ -59,6 +59,7 @@ const html = `
   let reearth;
   let index = 0;
   let selectedMenuIndex = -1;
+  let origin;
   let layers = [];
   
   const $titleList = document.getElementById('title_list')
@@ -82,7 +83,7 @@ const html = `
       } else { document.documentElement.classList.remove('extendedv'); }
     }
 
-    layers = e.data.layers;
+    layers = e.data.layers
     layers.map((layer, index) => {
       const $layer = document.createElement('div')
       $layer.classList.add('layer')
@@ -91,6 +92,8 @@ const html = `
       $layer.addEventListener('click', selectMenu)
       $titleList.appendChild($layer)
     })
+    
+    origin = e.data.origin
     console.log('layers', e.data.layers)
   };
   
@@ -157,6 +160,7 @@ update();
 
 function update() {
   // tourタグの付いたレイヤーから決め打ちで最初のものだけを取り出す
+  const origin = reearth.layers.findByTagLabels('origin')[0]
   let _layers = reearth.layers.findByTagLabels('tour');
   let layers = []
   console.log(_layers)
@@ -166,7 +170,6 @@ function update() {
     return;
   }
 
-  // GUIでは下から上に連番となるため、ここでは逆順で登録する
   _layers.reverse().map((layer, index) => {
     if (!layer.children　|| !(layer.children.length > 0)) return null
     let markers = [];
@@ -183,6 +186,7 @@ function update() {
         });
       }
     } else if (layer.children.length > 0) {
+      // GUIでは下から上に連番となるため、ここでは逆順で登録する
       for (let i = layer.children.length - 1; i >= 0; i--) {
         markers.push({
           lat: layer.children[i].property?.default.location.lat,
@@ -203,5 +207,6 @@ function update() {
   reearth.ui.postMessage({
     property: reearth.widget.property,
     layers,
+    origin,
   });
 }
