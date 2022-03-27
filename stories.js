@@ -52,9 +52,11 @@ const html = `
   }
   #story_wrapper #prev:after, #story_wrapper #next:after {
     content: '';
-    width: 10px;
+    position: absolute;
+    top: 50%;
+    width: 7px;
     height: 7px;
-    transform: rotate(-45deg);
+    transform: translateY(-50%) rotate(-45deg);
     transform-origin: top;
   }
   #story_wrapper #prev:after {
@@ -65,14 +67,11 @@ const html = `
     border-bottom: 1px solid #fff;
     border-right: 1px solid #fff;
   }
-  #story_wrapper #prev {
-    
-  }
-  #story_wrapper #next {
-    
-  }
   #story_wrapper.is-hidden {
     display: none;
+  }
+  #story_title, #marker_title, #story_num {
+    margin: 0;
   }
 </style>
 <div id="wrapper">
