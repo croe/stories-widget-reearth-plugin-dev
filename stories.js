@@ -15,7 +15,6 @@ const html = `
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.6);
     box-sizing: border-box;
-    width: 320px;
   }
   .extendedh body,
   .extendedh #wrapper {
@@ -40,6 +39,7 @@ const html = `
     display: flex;
   }
   #story_wrapper #prev, #story_wrapper #next {
+    position: relative;
     border: none;
     background: none;
     appearance: none;
@@ -48,9 +48,23 @@ const html = `
     justify-content: center;
     align-items: center;
     width: 20px;
-    height: 100%;
-    color: rgb(122, 119, 119);
     background-color: rgba(255, 255, 255, 0.05);
+  }
+  #story_wrapper #prev:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    transform: rotate(-45deg);
+  }
+  #story_wrapper #next:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+    transform: rotate(45deg);
   }
   #story_wrapper #prev {
     
@@ -65,7 +79,7 @@ const html = `
 <div id="wrapper">
   <div id="title_list"></div>
   <div id="story_wrapper" class="is-hidden">
-    <button id="prev">&lt;</button>
+    <button id="prev"></button>
     <div>
       <div>
         <h2 id="story_title"></h2>
@@ -73,7 +87,7 @@ const html = `
       </div>
       <p id="story_num"></p>
     </div>
-    <button id="next">&gt;</button>
+    <button id="next"></button>
   </div>
 </div>
 <script>
