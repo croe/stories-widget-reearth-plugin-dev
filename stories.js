@@ -204,7 +204,7 @@ function update() {
     })
   })
   console.log('layers', layers)
-  console.log('origin', origin)
+  console.log('origin', _origin)
   const origin = {
     lat: _origin.property.default.location.lat,
     lng: _origin.property.default.location.lng,
