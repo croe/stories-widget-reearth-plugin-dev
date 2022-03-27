@@ -57,15 +57,17 @@ const html = `
     width: 7px;
     height: 7px;
     transform: translateY(-50%) rotate(-45deg);
-    transform-origin: top;
+    transform-origin: center;
   }
   #story_wrapper #prev:after {
     border-top: 1px solid #fff;
     border-left: 1px solid #fff;
+    left: 8px;
   }
   #story_wrapper #next:after {
     border-bottom: 1px solid #fff;
     border-right: 1px solid #fff;
+    right: 8px;
   }
   #story_wrapper.is-hidden {
     display: none;
@@ -73,17 +75,28 @@ const html = `
   #story_title, #marker_title, #story_num {
     margin: 0;
   }
+  #story_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #story_title, #story_num {
+    font-size: 12px;
+  }
+  #marker_title {
+    font-size: 14px;
+  }
 </style>
 <div id="wrapper">
   <div id="title_list"></div>
   <div id="story_wrapper" class="is-hidden">
     <button id="prev"></button>
     <div>
-      <div>
+      <h3 id="marker_title"></h3>
+      <div id="story_info">
         <h2 id="story_title"></h2>
-        <h3 id="marker_title"></h3>
+        <p id="story_num"></p>
       </div>
-      <p id="story_num"></p>
     </div>
     <button id="next"></button>
   </div>
@@ -98,6 +111,7 @@ const html = `
   const $titleList = document.getElementById('title_list')
   const $storyWrap = document.getElementById('story_wrapper')
   const $storyTitle = document.getElementById('story_title')
+  const $storyNum = document.getElementById('story_num')
 
   const cb = (e) => {
     reearth = e.source.reearth;
@@ -185,7 +199,8 @@ const html = `
       { duration: 2 }
     );
     reearth.layers.select(targetMarker.id);
-    document.getElementById('marker_title').textContent = targetMarker.title + ' (' + (index + 1) + ' / ' + layers[selectedMenuIndex].markers.length + ')';
+    $storyNum.textContent =  + '(' + (index + 1) + ' / ' + layers[selectedMenuIndex].markers.length + ')'
+    document.getElementById('marker_title').textContent = targetMarker.title;
   };
 
   document.getElementById('prev').addEventListener('click', prev);
