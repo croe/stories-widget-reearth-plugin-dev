@@ -50,21 +50,20 @@ const html = `
     width: 20px;
     background-color: rgba(255, 255, 255, 0.05);
   }
-  #story_wrapper #prev:after {
+  #story_wrapper #prev:after, #story_wrapper #next:after {
     content: '';
     width: 10px;
-    height: 10px;
+    height: 7px;
+    transform: rotate(-45deg);
+    transform-origin: top;
+  }
+  #story_wrapper #prev:after {
     border-top: 1px solid #fff;
     border-left: 1px solid #fff;
-    transform: rotate(-45deg);
   }
   #story_wrapper #next:after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
     border-right: 1px solid #fff;
-    transform: rotate(45deg);
   }
   #story_wrapper #prev {
     
