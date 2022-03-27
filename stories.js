@@ -12,11 +12,10 @@ const html = `
     height: 100%;
   }
   #wrapper {
-    padding: 8px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.6);
     box-sizing: border-box;
-    width: 300px;
+    width: 320px;
   }
   .extendedh body,
   .extendedh #wrapper {
@@ -38,6 +37,25 @@ const html = `
     display: none;
   }
   #story_wrapper {
+    display: flex;
+  }
+  #story_wrapper #prev, #story_wrapper #next {
+    border: none;
+    background: none;
+    appearance: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 100%;
+    color: rgb(122, 119, 119);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  #story_wrapper #prev {
+    
+  }
+  #story_wrapper #next {
     
   }
   #story_wrapper.is-hidden {
@@ -47,12 +65,15 @@ const html = `
 <div id="wrapper">
   <div id="title_list"></div>
   <div id="story_wrapper" class="is-hidden">
-    <h2 id="story_title"></h2>
-    <h3 id="marker_title"></h3>
-    <p>
-      <button id="prev">Prev</button>
-      <button id="next">Next</button>
-    </p>
+    <button id="prev">&lt;</button>
+    <div>
+      <div>
+        <h2 id="story_title"></h2>
+        <h3 id="marker_title"></h3>
+      </div>
+      <p id="story_num"></p>
+    </div>
+    <button id="next">&gt;</button>
   </div>
 </div>
 <script>
@@ -124,7 +145,8 @@ const html = `
 
   const prev = () => {
     if (index === 0) {
-      console.log('prev')
+      hideLayer()
+      select(origin)
     }
     index = Math.max(0, index - 1);
     select(layers[selectedMenuIndex].markers[index]);
