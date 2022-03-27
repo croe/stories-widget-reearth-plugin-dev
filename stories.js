@@ -37,6 +37,7 @@ const html = `
   }
   #story_wrapper {
     display: flex;
+    justify-content: space-between;
   }
   #story_wrapper #prev, #story_wrapper #next {
     position: relative;
@@ -75,6 +76,10 @@ const html = `
   #story_title, #marker_title, #story_num {
     margin: 0;
   }
+  #story {
+    padding: 10px;
+    width: 100%;
+  }
   #story_info {
     display: flex;
     justify-content: space-between;
@@ -91,7 +96,7 @@ const html = `
   <div id="title_list"></div>
   <div id="story_wrapper" class="is-hidden">
     <button id="prev"></button>
-    <div>
+    <div id="story">
       <h3 id="marker_title"></h3>
       <div id="story_info">
         <h2 id="story_title"></h2>
