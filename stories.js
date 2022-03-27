@@ -204,7 +204,7 @@ const html = `
       { duration: 2 }
     );
     reearth.layers.select(targetMarker.id);
-    $storyNum.textContent =  + '(' + (index + 1) + ' / ' + layers[selectedMenuIndex].markers.length + ')'
+    $storyNum.textContent = '(' + (index + 1) + ' / ' + layers[selectedMenuIndex].markers.length + ')'
     document.getElementById('marker_title').textContent = targetMarker.title;
   };
 
