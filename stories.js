@@ -123,6 +123,9 @@ const html = `
   }
 
   const prev = () => {
+    if (index === 0) {
+      console.log('prev')
+    }
     index = Math.max(0, index - 1);
     select(layers[selectedMenuIndex].markers[index]);
   };
@@ -131,6 +134,7 @@ const html = `
     if (index + 1 === layers[selectedMenuIndex].markers.length) {
       hideLayer()
       index = 0
+      select(origin)
     } else {
       index = Math.min(layers[selectedMenuIndex].markers.length - 1, index + 1);
       select(layers[selectedMenuIndex].markers[index]);
