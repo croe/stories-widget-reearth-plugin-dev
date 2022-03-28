@@ -230,6 +230,7 @@ function update() {
   }
 
   _layers.reverse().map((layer, index) => {
+    console.log(layer)
     if (!layer.children　|| !(layer.children.length > 0)) return null
     let markers = [];
     // 直下のChildrenが1つ、かつ、その下のChildrenが複数ある時（もっといい分類がありそう）
