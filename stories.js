@@ -230,20 +230,32 @@ function update() {
   }
 
   _layers.reverse().map((layer, index) => {
-    console.log(layer)
     if (!layer.children　|| !(layer.children.length > 0)) return null
     let markers = [];
-    // 直下のChildrenが1つ、かつ、その下のChildrenが複数ある時（もっといい分類がありそう）
+    // 直下のChildrenが1つ、かつ、その下のChildrenが複数ある時（もっといい分類がありそう）はデータセット
     if (layer.children.length === 1 && layer.children[0].children.length > 0) {
-      // データセットから登録したもの
-      for (let i = 0; i <= layer.children[0].children.length - 1; i++) {
-        markers.push({
-          lat: layer.children[0].children[i].property?.default.location.lat,
-          lng: layer.children[0].children[i].property?.default.location.lng,
-          height: layer.children[0].children[i].property?.default.height || 10000,
-          id: layer.children[0].children[i].id,
-          title: layer.children[0].children[i].title
-        });
+      // 降順指定
+      const desc = layer.tags && layer.tags.length > 0 && layer.tags.some(t => t.label === "descending")
+      if (desc) {
+        for (let i = 0; i <= layer.children[0].children.length - 1; i++) {
+          markers.push({
+            lat: layer.children[0].children[i].property?.default.location.lat,
+            lng: layer.children[0].children[i].property?.default.location.lng,
+            height: layer.children[0].children[i].property?.default.height || 10000,
+            id: layer.children[0].children[i].id,
+            title: layer.children[0].children[i].title
+          });
+        }
+      } else {
+        for (let i = layer.children[0].children.length - 1; i >= 0; i--) {
+          markers.push({
+            lat: layer.children[0].children[i].property?.default.location.lat,
+            lng: layer.children[0].children[i].property?.default.location.lng,
+            height: layer.children[0].children[i].property?.default.height || 10000,
+            id: layer.children[0].children[i].id,
+            title: layer.children[0].children[i].title
+          });
+        }
       }
     } else if (layer.children.length > 0) {
       // GUIでは下から上に連番となるため、ここでは逆順で登録する
