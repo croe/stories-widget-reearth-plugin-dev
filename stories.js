@@ -32,6 +32,9 @@ const html = `
     color: black;
     padding: 6px 0;
   }
+  #title_list div {
+    cursor: pointer;
+  }
   #title_list.is-hidden {
     display: none;
   }
