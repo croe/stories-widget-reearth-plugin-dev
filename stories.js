@@ -185,6 +185,7 @@ const html = `
     origin = e.data.origin
     
     if (property && property.default && property.default.autostart) {
+      selectedMenuIndex = 0
       showLayer()
     }
   };
