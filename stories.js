@@ -106,6 +106,7 @@ const html = `
   }
 </style>
 <div id="wrapper">
+  <div id="info_wrapper"></div>
   <div id="title_list"></div>
   <div id="story_wrapper" class="is-hidden">
     <button id="prev"></button>
@@ -126,6 +127,7 @@ const html = `
   let origin;
   let layers = [];
   
+  const $mainWrap = document.getElementById('main_wrapper')
   const $titleList = document.getElementById('title_list')
   const $storyWrap = document.getElementById('story_wrapper')
   const $storyTitle = document.getElementById('story_title')
@@ -135,11 +137,19 @@ const html = `
     reearth = e.source.reearth;
     property = e.data.property;
     console.log(property)
-
-    // これは実際には不要
-    // if (property && property.default) {
-    //   document.getElementById('story_title').textContent = property.default.title;
-    // }
+    
+    if (property && property.default && property.default.title) {
+      const $title = document.createElement('div')
+      $title.classList.add('main_title')
+      $title.innerText = property.default.title
+      $mainWrap.appendChild($title)
+    }
+    if (property && property.default && property.default.description) {
+      const $description = document.createElement('div')
+      $description.classList.add('main_description')
+      $description.innerText = property.default.description
+      $mainWrap.appendChild($description)
+    }
 
     // この部分の必要性は今ひとつよく分からない
     if (property && property.extended) {
@@ -158,10 +168,11 @@ const html = `
       $layer.addEventListener('click', selectMenu)
       $titleList.appendChild($layer)
     })
-    
     origin = e.data.origin
-    console.log('layers', e.data.layers)
-    console.log(origin)
+    
+    if (property && property.default && property.default.autostart) {
+      select(layers[0].markers[0]);
+    }
   };
   
   const selectMenu = (e) => {
