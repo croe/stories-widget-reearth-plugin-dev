@@ -106,7 +106,7 @@ const html = `
   }
 </style>
 <div id="wrapper">
-  <div id="info_wrapper"></div>
+  <div id="main_wrapper"></div>
   <div id="title_list"></div>
   <div id="story_wrapper" class="is-hidden">
     <button id="prev"></button>
