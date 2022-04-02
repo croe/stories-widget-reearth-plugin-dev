@@ -24,6 +24,21 @@ const html = `
   .extendedv #wrapper {
     height: 100%;
   }
+  #main_wrapper {
+    background: #000;
+    border-radius: 10px 10px 0 0;
+    padding: 15px 17px;
+  }
+  #main_wrapper.is-hidden {
+    display: none;
+  }
+  .main_title {
+    font-size: 16px;
+  }
+  .main_description {
+    margin: 10px 0 0;
+    font-size: 12px;
+  }
   .layer {
     display: flex;
     justify-content: center;
@@ -38,7 +53,7 @@ const html = `
     color: #000;
   }
   #title_list {
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
     background-color: rgba(0, 0, 0, 0.6);
   }
   #title_list.is-hidden {
@@ -136,7 +151,6 @@ const html = `
   const cb = (e) => {
     reearth = e.source.reearth;
     property = e.data.property;
-    console.log(property)
     
     if (property && property.default && property.default.title) {
       const $title = document.createElement('div')
@@ -171,12 +185,11 @@ const html = `
     origin = e.data.origin
     
     if (property && property.default && property.default.autostart) {
-      select(layers[0].markers[0]);
+      showLayer()
     }
   };
   
   const selectMenu = (e) => {
-    console.log(e)
     selectedMenuIndex = e.target.dataset.id
     showLayer()
   }
@@ -187,6 +200,7 @@ const html = `
   });
   
   const showLayer = () => {
+    $mainWrap.classList.add('is-hidden')
     $titleList.classList.add('is-hidden')
     $storyWrap.classList.remove('is-hidden')
     $storyTitle.textContent = layers[selectedMenuIndex].title
@@ -194,6 +208,7 @@ const html = `
   }
   
   const hideLayer = () => {
+    $mainWrap.classList.remove('is-hidden')
     $titleList.classList.remove('is-hidden')
     $storyWrap.classList.add('is-hidden')
     selectedMenuIndex = -1
