@@ -25,19 +25,21 @@ const html = `
     height: 100%;
   }
   .layer {
-    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
-    padding: 6px 0;
+    padding: 8px 0;
+    cursor: pointer;
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all 400ms;
+  }
+  .layer:hover {
+    background-color: #fff;
+    color: #000;
   }
   #title_list {
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.6);
-  }
-  #title_list div {
-    cursor: pointer;
   }
   #title_list.is-hidden {
     display: none;
@@ -128,6 +130,7 @@ const html = `
   const cb = (e) => {
     reearth = e.source.reearth;
     property = e.data.property;
+    console.log(property)
 
     // これは実際には不要
     // if (property && property.default) {
@@ -229,7 +232,6 @@ function update() {
   const _origin = reearth.layers.findByTagLabels('origin')[0]
   let _layers = reearth.layers.findByTagLabels('story');
   let layers = []
-  console.log(_layers)
 
   // このエラーチェックはもっとちゃんとやる必要あり
   if (typeof _layers === undefined) {
@@ -281,8 +283,6 @@ function update() {
       markers
     })
   })
-  console.log('layers', layers)
-  console.log('origin', _origin)
   const origin = {
     lat: _origin.property.default.location.lat,
     lng: _origin.property.default.location.lng,
