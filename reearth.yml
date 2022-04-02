@@ -17,3 +17,9 @@ extensions:
             - id: title
               type: string
               title: Title
+            - id: description
+              type: string
+              title: Description
+            - id: autostart
+              type: boolean
+              title: Auto Start

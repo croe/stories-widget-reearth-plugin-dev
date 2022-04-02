@@ -32,6 +32,10 @@ const html = `
     color: black;
     padding: 6px 0;
   }
+  #title_list {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
   #title_list div {
     cursor: pointer;
   }
@@ -223,7 +227,7 @@ update();
 function update() {
   // tourタグの付いたレイヤーから決め打ちで最初のものだけを取り出す
   const _origin = reearth.layers.findByTagLabels('origin')[0]
-  let _layers = reearth.layers.findByTagLabels('tour');
+  let _layers = reearth.layers.findByTagLabels('story');
   let layers = []
   console.log(_layers)
 
