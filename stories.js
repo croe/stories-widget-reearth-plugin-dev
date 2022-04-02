@@ -59,6 +59,10 @@ const html = `
     align-items: center;
     width: 20px;
     background-color: rgba(255, 255, 255, 0.05);
+    transition: all 400ms;
+  }
+  #story_wrapper #prev:hover, #story_wrapper #next:hover {
+    background-color: rgba(255, 255, 255, 0.35);
   }
   #story_wrapper #prev:after, #story_wrapper #next:after {
     content: '';
